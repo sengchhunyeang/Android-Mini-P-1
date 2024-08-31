@@ -20,6 +20,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -77,7 +78,7 @@ fun MyViewApp() {
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFF0054A6)//0xFF003C6C ,0xFF003E7D 0xFF0054A6||FF2D7C||D027B5||B623D5||941FFF
             ), modifier = Modifier
-                .size(width = 380.dp, height = 200.dp)
+                .size(width = 380.dp, height = 140.dp)
                 .padding(3.dp)
                 .fillMaxSize()
                 .clip(shape = RoundedCornerShape(16.dp))
@@ -124,7 +125,25 @@ fun MyViewApp() {
                 }
 
             }
+            Spacer(modifier = Modifier.padding(top = 38.dp))
+            Row(modifier = Modifier.padding(start = 10.dp)) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_receive),
+                    contentDescription = null
+                    , modifier = Modifier.size(15.dp)
+                )
+                Text(text = "Receive money", fontSize = 10.sp, color = Color.White , modifier = Modifier.padding(start = 10.dp , top = 2.dp))
+                Spacer(modifier = Modifier.padding(start = 30.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_pay),
+                    contentDescription = null
+                    , modifier = Modifier.size(15.dp)
+                )
+                Text(text = "Send Money", fontSize = 10.sp, color = Color.White , modifier = Modifier.padding(start = 10.dp , top = 2.dp))
+
+            }
         }
+
     }
 }
 
