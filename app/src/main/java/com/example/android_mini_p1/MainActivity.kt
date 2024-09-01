@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.android_mini_p1.ui.theme.Androidminip1Theme
+import com.example.android_mini_p1.view.Information
 import com.example.android_mini_p1.view.MyAccounts
 import com.example.android_mini_p1.view.MyViewApp
 
@@ -115,6 +116,7 @@ fun MyBackApp() {
                     MyViewApp()
 
                     MyAccounts()
+                    Information()
                 }
             }
         }
