@@ -1,16 +1,21 @@
 package com.example.android_mini_p1.view
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -37,6 +42,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Button
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import com.example.android_mini_p1.R
+
+data class StoreIamge(
+    val imageId: Int
+)
+
+val myImage = listOf(
+    StoreIamge(imageId = R.drawable.myui),
+    StoreIamge(imageId = R.drawable.myui),
+    StoreIamge(imageId = R.drawable.myui),
+    StoreIamge(imageId = R.drawable.myui)
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +64,7 @@ fun ButtonEdit() {
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
     var selectedButton by remember {
-        mutableStateOf<String?>(null)
+        mutableStateOf<String?>("Themes")
     }
     Scaffold(
         floatingActionButton = {
@@ -82,87 +101,120 @@ fun ButtonEdit() {
                     sheetState = sheetState
                 ) {
                     // Sheet content
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth() // Ensure the box takes up the full width
-                            .height(400.dp)
-                    ) {
-                        Box(modifier = Modifier.padding(15.dp)) {
-                            Text(
-                                text = "Appearance",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 20.sp
-                            )
+                    Column() {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth() // Ensure the box takes up the full width
+                                .height(400.dp)
+                        ) {
+                            Box(modifier = Modifier.padding(15.dp)) {
+                                Text(
+                                    text = "Appearance",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 20.sp
+                                )
 
-                            Row(modifier = Modifier.padding(top = 35.dp)) {
-                                Button(
-                                    onClick = { selectedButton = "Themes" },
-                                    enabled = showBottomSheet,
-                                    modifier = Modifier, colors = ButtonDefaults.buttonColors(
-                                        containerColor = if (selectedButton == "Themes") Color(
-                                            0xFFCBE5FF
-                                        ) else Color(0xFFA0A0A0)
+                                Row(modifier = Modifier.padding(top = 35.dp)) {
+                                    Button(
+                                        onClick = { selectedButton = "Themes" },
+                                        enabled = showBottomSheet,
+                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                            containerColor = if (selectedButton == "Themes") Color(
+                                                0xFFCBE5FF
+                                            ) else Color(0xFFA0A0A0)
 
-                                    ), shape = RoundedCornerShape(10.dp)
-                                ) {
-                                    Text(
-                                        text = "Themes",
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(10.dp))
-                                Button(
-                                    onClick = { selectedButton = "Dark Mode" },
-                                    modifier = Modifier, colors = ButtonDefaults.buttonColors(
-                                        containerColor = if (selectedButton == "Dark Mode") Color(
-                                            0xFFCBE5FF
-                                        ) else Color(0xFFA0A0A0)
+                                        ), shape = RoundedCornerShape(10.dp)
+                                    ) {
+                                        Text(
+                                            text = "Themes",
+                                            color = Color.Black,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Button(
+                                        onClick = { selectedButton = "Dark Mode" },
+                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                            containerColor = if (selectedButton == "Dark Mode") Color(
+                                                0xFFCBE5FF
+                                            ) else Color(0xFFA0A0A0)
 
-                                    ), shape = RoundedCornerShape(10.dp)
-                                ) {
-                                    Text(
-                                        text = "Dark Mode",
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(10.dp))
-                                Button(
-                                    onClick = { selectedButton = "Language" },
-                                    modifier = Modifier, colors = ButtonDefaults.buttonColors(
-                                        containerColor = if (selectedButton == "Language") Color(
-                                            0xFFCBE5FF
-                                        ) else Color(0xFFA0A0A0)
+                                        ), shape = RoundedCornerShape(10.dp)
+                                    ) {
+                                        Text(
+                                            text = "Dark Mode",
+                                            color = Color.Black,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Button(
+                                        onClick = { selectedButton = "Language" },
+                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                            containerColor = if (selectedButton == "Language") Color(
+                                                0xFFCBE5FF
+                                            ) else Color(0xFFA0A0A0)
 
-                                    ), shape = RoundedCornerShape(10.dp)
-                                ) {
-                                    Text(
-                                        text = "Language",
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-                            }
-                        }
+                                        ), shape = RoundedCornerShape(10.dp)
+                                    ) {
+                                        Text(
+                                            text = "Language",
+                                            color = Color.Black,
+                                            fontWeight = FontWeight.Bold
+                                        )
 
-                        Button(
-                            onClick = {
-                                scope.launch { sheetState.hide() }.invokeOnCompletion {
-                                    if (!sheetState.isVisible) {
-                                        showBottomSheet = false
                                     }
                                 }
-                            },
-                            modifier = Modifier
-                                .align(Alignment.BottomEnd)
-                                .padding(15.dp), colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF00468B)
-                            )
-                        ) {
-                            Text(text = "Save")
-                        }
 
+                                Box(modifier = Modifier.padding(end = 6.dp)) {
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(top = 100.dp)
+                                    ) {
+                                        myImage.forEach { image ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .weight(1f)
+                                                    .padding(5.dp)
+                                                    .clip(RoundedCornerShape(15.dp))
+                                                    .background(Color.White),
+                                                contentAlignment = Alignment.Center
+
+                                            ) {
+                                                Image(
+                                                    painter = painterResource(id = image.imageId),
+                                                    contentDescription = null,
+                                                    modifier = Modifier
+                                                        .size(160.dp)
+                                                        .clip(RoundedCornerShape(40.dp))
+                                                        .background(Color.White)
+                                                        .padding(10.dp),
+
+                                                    )
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                            }
+                            Button(
+                                onClick = {
+                                    scope.launch { sheetState.hide() }.invokeOnCompletion {
+                                        if (!sheetState.isVisible) {
+                                            showBottomSheet = false
+                                        }
+                                    }
+                                },
+                                modifier = Modifier
+                                    .align(Alignment.BottomEnd)
+                                    .padding(15.dp), colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF00468B)
+                                )
+                            ) {
+                                Text(text = "Save")
+                            }
+                        }
                     }
                 }
             }
