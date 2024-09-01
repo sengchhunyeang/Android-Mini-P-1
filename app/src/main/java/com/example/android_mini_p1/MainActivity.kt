@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -37,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.android_mini_p1.ui.theme.Androidminip1Theme
+import com.example.android_mini_p1.view.ButtonEdit
 import com.example.android_mini_p1.view.Information
 import com.example.android_mini_p1.view.MyAccounts
 import com.example.android_mini_p1.view.MyViewApp
@@ -117,9 +119,14 @@ fun MyBackApp() {
 
                     MyAccounts()
                     Information()
+
+                       ButtonEdit()
+
+
                 }
+
             }
         }
     }
-
 }
+
