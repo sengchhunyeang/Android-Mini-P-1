@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +19,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -34,6 +38,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.android_mini_p1.ui.theme.Androidminip1Theme
+import com.example.android_mini_p1.view.ButtonEdit
+import com.example.android_mini_p1.view.Information
+import com.example.android_mini_p1.view.MyAccounts
 import com.example.android_mini_p1.view.MyViewApp
 
 
@@ -69,9 +76,9 @@ fun MyBackApp() {
                                 contentDescription = "MyImage",
                                 modifier = Modifier
                                     .size(40.dp)
-                                    .clip(
-                                        CircleShape
-                                    )
+                                    .clip(CircleShape)
+                                    .border(BorderStroke(2.dp, Color.White), shape = CircleShape)
+
                             )
                             Spacer(modifier = Modifier.width(16.dp))
                             Column {
@@ -109,9 +116,17 @@ fun MyBackApp() {
                 Column(modifier = Modifier.padding(innerPadding)) {
                     // Add other UI elements here
                     MyViewApp()
+
+                    MyAccounts()
+                    Information()
+
+                       ButtonEdit()
+
+
                 }
+
             }
         }
     }
-
 }
+
