@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,10 +28,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.res.painterResource
@@ -43,6 +51,7 @@ import com.example.android_mini_p1.R
 
 @Composable
 fun MyViewApp() {
+    var textVisit by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .padding(16.dp)
@@ -84,21 +93,43 @@ fun MyViewApp() {
                 .clip(shape = RoundedCornerShape(16.dp))
 
         ) {
-            Row() {
-                Text(
-                    text = "$20.00",
-                    modifier = Modifier.padding(10.dp),
-                    fontSize = 20.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.bx_show),
-                    contentDescription = null,
+            Row(
+                modifier = Modifier.padding(top = 3.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (textVisit) {
+                    Box(
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .size(width = 65.dp, height = 30.dp)
+                            .background(
+                                Color.LightGray, shape = RoundedCornerShape(5.dp)
+                            )
+                    )
+                } else {
+                    Text(
+                        text = "$20.00",
+                        modifier = Modifier.padding(10.dp),
+                        fontSize = 25.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                Box(
                     modifier = Modifier
-                        .size(30.dp)
-                        .padding(top = 10.dp),
-                )
+                        .background(Color(0x2D00C2FF), shape = RoundedCornerShape(5.dp))
+                        .padding(4.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.bx_show),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { textVisit = !textVisit }
+                    )
+
+                }
 
             }
             Row() {
@@ -129,17 +160,25 @@ fun MyViewApp() {
             Row(modifier = Modifier.padding(start = 10.dp)) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_receive),
-                    contentDescription = null
-                    , modifier = Modifier.size(15.dp)
+                    contentDescription = null, modifier = Modifier.size(15.dp)
                 )
-                Text(text = "Receive money", fontSize = 10.sp, color = Color.White , modifier = Modifier.padding(start = 10.dp , top = 2.dp))
+                Text(
+                    text = "Receive money",
+                    fontSize = 10.sp,
+                    color = Color.White,
+                    modifier = Modifier.padding(start = 10.dp, top = 2.dp)
+                )
                 Spacer(modifier = Modifier.padding(start = 30.dp))
                 Image(
                     painter = painterResource(id = R.drawable.ic_pay),
-                    contentDescription = null
-                    , modifier = Modifier.size(15.dp)
+                    contentDescription = null, modifier = Modifier.size(15.dp)
                 )
-                Text(text = "Send Money", fontSize = 10.sp, color = Color.White , modifier = Modifier.padding(start = 10.dp , top = 2.dp))
+                Text(
+                    text = "Send Money",
+                    fontSize = 10.sp,
+                    color = Color.White,
+                    modifier = Modifier.padding(start = 10.dp, top = 2.dp)
+                )
 
             }
         }
