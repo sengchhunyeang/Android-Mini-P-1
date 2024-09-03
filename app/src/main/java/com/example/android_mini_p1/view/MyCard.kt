@@ -97,19 +97,28 @@ fun MyViewApp() {
                 modifier = Modifier.padding(top = 3.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
-                Text(
-                    text = "$20.00",
-                    modifier = Modifier.padding(10.dp),
-                    fontSize = 25.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+                if (textVisit) {
+                    Box(
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .size(width = 65.dp, height = 30.dp)
+                            .background(
+                                Color.LightGray, shape = RoundedCornerShape(5.dp)
+                            )
+                    )
+                } else {
+                    Text(
+                        text = "$20.00",
+                        modifier = Modifier.padding(10.dp),
+                        fontSize = 25.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
                 Box(
                     modifier = Modifier
-                        .background(Color(0x2D00C2FF))
-                        .clip(RoundedCornerShape(50.dp))
+                        .background(Color(0x2D00C2FF), shape = RoundedCornerShape(5.dp))
                         .padding(4.dp)
                 ) {
                     Image(

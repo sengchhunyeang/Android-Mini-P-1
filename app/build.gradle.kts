@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.core)
     implementation(libs.compose.qr.code)
 
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
