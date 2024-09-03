@@ -2,23 +2,19 @@ package com.example.android_mini_p1.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.Scaffold
@@ -29,10 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
-import androidx.compose.material3.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.Button
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -41,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.compose.material3.Button
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import com.example.android_mini_p1.R
@@ -66,26 +58,24 @@ fun ButtonEdit() {
     var selectedButton by remember {
         mutableStateOf<String?>("Themes")
     }
-    Scaffold(
-        floatingActionButton = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp), // Adjust padding as needed
-                contentAlignment = Alignment.Center // Center the FAB horizontally
-            ) {
-                ExtendedFloatingActionButton(
-                    text = { Text("Edit Home") },
-                    icon = { },
-                    onClick = {
-                        showBottomSheet = true
-                    },
-                    containerColor = Color.White,
-                    contentColor = Color.Black, modifier = Modifier.size(200.dp, 200.dp)
+    Scaffold(floatingActionButton = {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 30.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = { showBottomSheet = true },
+                modifier = Modifier,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White, contentColor = Color.Black
                 )
+            ) {
+                Text(text = "Edit Home")
             }
         }
-    ) { contentPadding ->
+    }) { contentPadding ->
         // Box to set the background color for the entire Scaffold content
         Box(
             modifier = Modifier
@@ -97,11 +87,10 @@ fun ButtonEdit() {
                 ModalBottomSheet(
                     onDismissRequest = {
                         showBottomSheet = false
-                    },
-                    sheetState = sheetState
+                    }, sheetState = sheetState
                 ) {
                     // Sheet content
-                    Column() {
+                    Column {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth() // Ensure the box takes up the full width
@@ -118,12 +107,14 @@ fun ButtonEdit() {
                                     Button(
                                         onClick = { selectedButton = "Themes" },
                                         enabled = showBottomSheet,
-                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                        modifier = Modifier,
+                                        colors = ButtonDefaults.buttonColors(
                                             containerColor = if (selectedButton == "Themes") Color(
                                                 0xFFCBE5FF
                                             ) else Color(0xFFA0A0A0)
 
-                                        ), shape = RoundedCornerShape(10.dp)
+                                        ),
+                                        shape = RoundedCornerShape(10.dp)
                                     ) {
                                         Text(
                                             text = "Themes",
@@ -134,12 +125,14 @@ fun ButtonEdit() {
                                     Spacer(modifier = Modifier.width(10.dp))
                                     Button(
                                         onClick = { selectedButton = "Dark Mode" },
-                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                        modifier = Modifier,
+                                        colors = ButtonDefaults.buttonColors(
                                             containerColor = if (selectedButton == "Dark Mode") Color(
                                                 0xFFCBE5FF
                                             ) else Color(0xFFA0A0A0)
 
-                                        ), shape = RoundedCornerShape(10.dp)
+                                        ),
+                                        shape = RoundedCornerShape(10.dp)
                                     ) {
                                         Text(
                                             text = "Dark Mode",
@@ -150,12 +143,14 @@ fun ButtonEdit() {
                                     Spacer(modifier = Modifier.width(10.dp))
                                     Button(
                                         onClick = { selectedButton = "Language" },
-                                        modifier = Modifier, colors = ButtonDefaults.buttonColors(
+                                        modifier = Modifier,
+                                        colors = ButtonDefaults.buttonColors(
                                             containerColor = if (selectedButton == "Language") Color(
                                                 0xFFCBE5FF
                                             ) else Color(0xFFA0A0A0)
 
-                                        ), shape = RoundedCornerShape(10.dp)
+                                        ),
+                                        shape = RoundedCornerShape(10.dp)
                                     ) {
                                         Text(
                                             text = "Language",
@@ -168,8 +163,7 @@ fun ButtonEdit() {
 
                                 Box(modifier = Modifier.padding(end = 6.dp)) {
                                     Row(
-                                        modifier = Modifier
-                                            .padding(top = 100.dp)
+                                        modifier = Modifier.padding(top = 100.dp)
                                     ) {
                                         myImage.forEach { image ->
                                             Box(
@@ -208,7 +202,8 @@ fun ButtonEdit() {
                                 },
                                 modifier = Modifier
                                     .align(Alignment.BottomEnd)
-                                    .padding(15.dp), colors = ButtonDefaults.buttonColors(
+                                    .padding(15.dp),
+                                colors = ButtonDefaults.buttonColors(
                                     containerColor = Color(0xFF00468B)
                                 )
                             ) {

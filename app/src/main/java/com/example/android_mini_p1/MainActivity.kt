@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,31 +18,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.android_mini_p1.ui.theme.Androidminip1Theme
 import com.example.android_mini_p1.view.ButtonEdit
 import com.example.android_mini_p1.view.Information
 import com.example.android_mini_p1.view.MyAccounts
 import com.example.android_mini_p1.view.MyViewApp
+import com.example.android_mini_p1.view.PopUpQr
 
 
 class MainActivity : ComponentActivity() {
@@ -53,12 +50,13 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyBackApp() {
-
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value) {
+        PopUpQr(onDismiss = { showDialog.value = false })
+    }
     Column {
         Scaffold(
             topBar = {
@@ -101,7 +99,9 @@ fun MyBackApp() {
                             Image(
                                 painter = painterResource(id = R.drawable.ic_bk),
                                 contentDescription = null,
-                                modifier = Modifier.size(24.dp)
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable { showDialog.value = true }
                             )
                         }
                     },
@@ -119,14 +119,16 @@ fun MyBackApp() {
 
                     MyAccounts()
                     Information()
-
-                       ButtonEdit()
-
-
+                    ButtonEdit()
                 }
 
             }
         }
     }
 }
+
+
+
+
+
 
