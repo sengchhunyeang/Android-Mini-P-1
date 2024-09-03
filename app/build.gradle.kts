@@ -63,6 +63,10 @@ dependencies {
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
     //
+    // Library generate
+    implementation(libs.core)
+    implementation(libs.compose.qr.code)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
